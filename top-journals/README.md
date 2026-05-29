@@ -4,11 +4,12 @@ This folder catalogs **peer-reviewed LLM (large language model) papers** that ha
 
 ## Files
 
-| File | Coverage |
-|---|---|
-| [`nature.md`](./nature.md) | **Nature** family — Nature, Nature Machine Intelligence, Nature Medicine, Nature Computational Science, Nature Methods, Nature Biotechnology, Nature Communications, Nature Reviews, Nature Human Behaviour, etc. |
-| [`science.md`](./science.md) | **Science** family — Science, Science Advances, Science Translational Medicine, Science Robotics, Science Immunology, etc. |
-| [`cell-nejm.md`](./cell-nejm.md) | **Cell** family + **NEJM / NEJM AI** + **Lancet** family + **JAMA** family |
+| File | Coverage | Papers |
+|---|---|---|
+| [`nature.md`](./nature.md) | **Nature** family — Nature, Nature Machine Intelligence, Nature Medicine, Nature Computational Science, Nature Methods, Nature Biotechnology, Nature Communications, Nature Human Behaviour, Nature Biomedical Engineering, Nature Reviews, npj Digital Medicine, etc. | **53** |
+| [`science.md`](./science.md) | **Science** family — Science, Science Advances, Science Robotics | **31** |
+| [`cell-nejm.md`](./cell-nejm.md) | **Cell** family + **NEJM / NEJM AI** + **Lancet** family + **JAMA** family | **55** |
+| **Total verified entries** | | **139** |
 
 ## Methodology
 
