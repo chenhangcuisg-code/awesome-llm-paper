@@ -79,6 +79,14 @@ A curated list of large-language-model papers across the four target medical / l
 
 > Note: many of the strongest 2025–2026 "evaluation crisis" and "clinical RCT" entries appeared in *Nature Medicine* and *npj Digital Medicine* (see [`nature.md`](./nature.md) entries #93–105) rather than in NEJM AI / Lancet / JAMA / Cell, so this second-pass list is intentionally short.
 
+## Third-pass additions (NEJM AI, 2025)
+
+| # | Journal | Year (month) | Title | Link | Authors | Summary |
+|---|---------|--------------|-------|------|---------|---------|
+| 60 | NEJM AI | 2025 (Jul) | **ECGFounder**: an Electrocardiogram Foundation Model Built on over 10 Million Recordings | https://doi.org/10.1056/AIoa2401033 | Li H., Aguirre A.D., Liu B., et al. | Transformer foundation model pretrained on 10.77M ECGs from Harvard-Emory database; diagnoses 150 cardiac abnormalities with external validation. **First ECG foundation model in NEJM AI** — adds a new modality to the journal's coverage. |
+
+> Several other 2026 agentic / multi-agent clinical papers (Robin, SPARK, BioMedAgent, Multimodal AMIE, MAC, hepatology RAG) were published in *Nature*, *Nature Medicine*, *Nature Biomedical Engineering*, and *npj Digital Medicine* rather than in the Cell / NEJM / Lancet / JAMA families — see [`nature.md`](./nature.md) entries #133–139.
+
 ---
 
 ## Source indices

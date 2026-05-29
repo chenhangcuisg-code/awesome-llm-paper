@@ -52,8 +52,17 @@ Verified large-language-model–related papers from journals in the **Science** 
 | 35 | Science | 2024 (Sep) | Durably reducing conspiracy beliefs through dialogues with AI | https://www.science.org/doi/10.1126/science.adq1814 | Costello T.H., Pennycook G., Rand D.G. | 2,190 conspiracy believers debated GPT-4 Turbo for ~8 min; belief in their chosen conspiracy dropped ~20% and the effect persisted at 2 months, generalizing across conspiracy types. Counter to the "AI amplifies misinformation" narrative. |
 | 36 | Science | 2026 ⚠️ | Agentic AI and the next intelligence explosion | https://www.science.org/doi/10.1126/science.aeg1895 | Bratton B., Agüera y Arcas B., Evans J. (Google "Paradigms of Intelligence") | Perspective arguing the coming "intelligence explosion" will not be a monolithic superintelligence but a plural, social ecosystem of specialized LLM-based agents entangled with humans. Reframes singularity discourse around multi-agent societies. |
 
+## Third-pass additions (Science family, 2021–2023)
+
+| # | Journal | Year (month) | Title | Link | Authors | Summary |
+|---|---------|--------------|-------|------|---------|---------|
+| 37 | **Science** | 2022 (Dec) | Human-level play in the game of Diplomacy by combining language models with strategic reasoning (**CICERO**) | https://www.science.org/doi/10.1126/science.ade9097 | Bakhtin A., Brown N., Dinan E., et al. (Meta FAIR Diplomacy Team) | First AI to reach human-level performance in Diplomacy, a 7-player game requiring natural-language negotiation. Combines a 2.7B-parameter dialogue model with a planning + RL agent that infers other players' beliefs and intents and generates dialogue aligned with strategic plans. **Landmark LLM-agent paper for cooperative multi-agent AI with language.** |
+| 38 | **Science** | 2021 (Aug) | Accurate prediction of protein structures and interactions using a three-track neural network (**RoseTTAFold**) | https://www.science.org/doi/10.1126/science.abj8754 | Baek M., DiMaio F., Anishchenko I., et al. (Baker lab) | Three-track architecture with 1D / 2D / 3D axial-attention transformer blocks sharing information between sequence, distance, and coordinate tracks. The open competitor to AlphaFold-2 and prior art for **all** later attention-based protein design. |
+| 39 | **Science** | 2023 (Sep) | Accurate proteome-wide missense variant effect prediction with **AlphaMissense** | https://www.science.org/doi/10.1126/science.adg7492 | Cheng J., Novati G., Pan J., et al. (DeepMind) | Fine-tunes the AlphaFold-2 Evoformer (transformer-based) with weak supervision from human / primate population frequencies; classifies 71M missense variants. Attention-based foundation model framed as a variant-effect predictor. |
+
 ## Notes on coverage
 
 - Coscientist (Boiko et al., autonomous chemistry with GPT-4) is omitted here — it was published in **Nature**, not Science. See [`nature.md`](./nature.md).
 - RT-2, PaLM-E, OpenVLA, π0, and Med-PaLM are likewise not Science-family papers.
 - 2026 entries (24–31, 36) have ⚠️ flags pending exact issue / month confirmation.
+- **AlphaFold-2** (Jumper et al.) and **AlphaStar** are in *Nature*, not Science — see [`nature.md`](./nature.md) entries #106 and #117.
