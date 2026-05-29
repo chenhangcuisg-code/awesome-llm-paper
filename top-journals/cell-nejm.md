@@ -68,6 +68,19 @@ A curated list of large-language-model papers across the four target medical / l
 
 ---
 
+## Second-pass additions (NEJM AI / Lancet / JAMA / Cell, 2025–2026)
+
+| # | Journal | Year (month) | Title | Link | Authors | Summary |
+|---|---------|--------------|-------|------|---------|---------|
+| 56 | NEJM AI | 2025 (Mar) | Randomized Trial of a Generative AI Chatbot for Mental Health Treatment (**Therabot**) | https://ai.nejm.org/doi/full/10.1056/AIoa2400802 | Heinz M.V., Jacobson N.C., et al. (Dartmouth) | First RCT of a fully generative AI psychotherapy chatbot: 210 adults, 4 weeks; 51% reduction in depression, 31% in anxiety, 19% in eating-disorder symptoms vs waitlist. Landmark generative-AI mental-health RCT. |
+| 57 | The Lancet | 2026 (May) ⚠️ | Fabricated citations: an audit across 2.5 million biomedical papers | https://doi.org/10.1016/S0140-6736(26)00603-3 | (Lancet research letter) | Fabricated citations in biomedical literature rose 12× in two years: 1/2,828 papers (2023) → 1/458 (2025) → 1/277 (early 2026); reviews 57% more affected than originals. Largest journal-venue evidence of LLM-driven citation hallucination at scale. |
+| 58 | Lancet Digital Health | 2025 ⚠️ | Mapping the susceptibility of LLMs to medical misinformation across clinical notes and social media: a cross-sectional benchmarking analysis | https://doi.org/10.1016/S2589-7500(25)00131-1 | (Lancet Digital Health team) | Cross-sectional benchmark testing how LLMs respond to medical misinformation framed via different logical fallacies — quantifies the framing-dependence of hallucination beyond simple QA. |
+| 59 | Cell Reports Medicine | 2026 ⚠️ | From tool to teammate: an RCT of clinician-AI collaborative workflows for diagnosis | https://doi.org/10.1038/s41746-026-02545-1 | (search snippet) | RCT of 70 clinicians using a collaborative GPT system that surfaces agreement / disagreement between AI and clinician diagnostic assessments. (Note: DOI prefix is npj — re-verify before citing.) |
+
+> Note: many of the strongest 2025–2026 "evaluation crisis" and "clinical RCT" entries appeared in *Nature Medicine* and *npj Digital Medicine* (see [`nature.md`](./nature.md) entries #93–105) rather than in NEJM AI / Lancet / JAMA / Cell, so this second-pass list is intentionally short.
+
+---
+
 ## Source indices
 
 - [NEJM AI — Research](https://ai.nejm.org/browse/ai-article-category/research)

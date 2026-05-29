@@ -6,10 +6,12 @@ This folder catalogs **peer-reviewed LLM (large language model) papers** that ha
 
 | File | Coverage | Papers |
 |---|---|---|
-| [`nature.md`](./nature.md) | **Nature** family — Nature, Nature Machine Intelligence, Nature Medicine, Nature Computational Science, Nature Methods, Nature Biotechnology, Nature Communications, Nature Human Behaviour, Nature Biomedical Engineering, Nature Reviews, npj Digital Medicine, etc. | **53** |
-| [`science.md`](./science.md) | **Science** family — Science, Science Advances, Science Robotics | **31** |
-| [`cell-nejm.md`](./cell-nejm.md) | **Cell** family + **NEJM / NEJM AI** + **Lancet** family + **JAMA** family | **55** |
-| **Total verified entries** | | **139** |
+| [`nature.md`](./nature.md) | **Nature** family — Nature, Nature Machine Intelligence, Nature Medicine, Nature Computational Science, Nature Methods, Nature Biotechnology, Nature Communications, Nature Human Behaviour, Nature Biomedical Engineering, Nature Reviews, Nature Health, npj Digital Medicine, etc. | **105** |
+| [`science.md`](./science.md) | **Science** family — Science, Science Advances, Science Robotics | **36** |
+| [`cell-nejm.md`](./cell-nejm.md) | **Cell** family + **NEJM / NEJM AI** + **Lancet** family + **JAMA** family | **59** |
+| **Total verified entries** | | **200** |
+
+> Coverage updated in a second-pass search (2026-05) adding: DeepMind flagships (AlphaTensor / AlphaCode / AlphaGeometry / AlphaProof / AlphaFold-3 / GraphCast / GenCast / Co-Scientist), Earth foundation models (Pangu-Weather, Aurora), reasoning-model papers (DeepSeek-R1 in Nature, Humanity's Last Exam), AI-safety perspectives (Bengio/Hinton/Russell "Managing extreme AI risks" in Science), evaluation-crisis papers (Densing law, MaCBench, evaluation illusion, CREOLA, CSEDB), persuasion / cognition / society LLM papers (Centaur, GPT-4 persuasion, conspiracy debate, scientific writing impact), and recent clinical RCTs (Therabot in NEJM AI, Goh 2025 in Nature Medicine, Pakistan RCT, PreA primary→specialist RCT). Intentional gaps: Anthropic-authored mechanistic-interpretability work is still arXiv-only; the only Nature touch is the *News & Views* on Sleeper Agents.
 
 ## Methodology
 

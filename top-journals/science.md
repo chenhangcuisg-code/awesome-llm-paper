@@ -42,8 +42,18 @@ Verified large-language-model–related papers from journals in the **Science** 
 
 ---
 
+## Second-pass additions (Science family, 2022–2026)
+
+| # | Journal | Year (month) | Title | Link | Authors | Summary |
+|---|---------|--------------|-------|------|---------|---------|
+| 32 | **Science** | 2024 (May) | **Managing extreme AI risks amid rapid progress** | https://www.science.org/doi/10.1126/science.adn0117 | Bengio Y., Hinton G., Yao A., Song D., Abbeel P., Darrell T., Harari Y.N., Russell S., Kahneman D., Mindermann S., et al. | Consensus policy paper from 25 senior AI/policy figures arguing frontier AI poses extreme risks (misuse, autonomy, loss of control) and that current governance lacks adequate institutions. Calls for reorienting technical R&D toward safety and for adaptive, proactive regulation. **The single most-cited AI-safety perspective of 2024.** |
+| 33 | Science | 2022 (Dec) | Competition-level code generation with **AlphaCode** | https://www.science.org/doi/10.1126/science.abq1158 | Li Y., Choi D., Chung J., et al. (DeepMind) | Transformer trained on GitHub + curated contest data generates millions of candidate programs that are filtered / clustered to 10 submissions, achieving top-54% rank on Codeforces — first AI to reach median competitive-programmer level. |
+| 34 | Science | 2023 (Nov) | Learning skillful medium-range global weather forecasting (**GraphCast**) | https://www.science.org/doi/10.1126/science.adi2336 | Lam R., Sanchez-Gonzalez A., Willson M., et al. (DeepMind) | GNN-based learned simulator beats ECMWF HRES on 89.3% of 2,760 target variables / lead times; produces a 10-day global forecast in ~1 minute on a single TPU. |
+| 35 | Science | 2024 (Sep) | Durably reducing conspiracy beliefs through dialogues with AI | https://www.science.org/doi/10.1126/science.adq1814 | Costello T.H., Pennycook G., Rand D.G. | 2,190 conspiracy believers debated GPT-4 Turbo for ~8 min; belief in their chosen conspiracy dropped ~20% and the effect persisted at 2 months, generalizing across conspiracy types. Counter to the "AI amplifies misinformation" narrative. |
+| 36 | Science | 2026 ⚠️ | Agentic AI and the next intelligence explosion | https://www.science.org/doi/10.1126/science.aeg1895 | Bratton B., Agüera y Arcas B., Evans J. (Google "Paradigms of Intelligence") | Perspective arguing the coming "intelligence explosion" will not be a monolithic superintelligence but a plural, social ecosystem of specialized LLM-based agents entangled with humans. Reframes singularity discourse around multi-agent societies. |
+
 ## Notes on coverage
 
 - Coscientist (Boiko et al., autonomous chemistry with GPT-4) is omitted here — it was published in **Nature**, not Science. See [`nature.md`](./nature.md).
 - RT-2, PaLM-E, OpenVLA, π0, and Med-PaLM are likewise not Science-family papers.
-- 2026 entries (24–31) have ⚠️ flags pending exact issue/month confirmation.
+- 2026 entries (24–31, 36) have ⚠️ flags pending exact issue / month confirmation.
