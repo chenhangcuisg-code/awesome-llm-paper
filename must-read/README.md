@@ -1,32 +1,19 @@
 # Must-Read-LLM-Papers
 
-## RL Optimization Algorithms
+## Post-Training
 
-| Model    | Paper Title | arXiv Link |
+| Model    | Paper Title | Link |
 |----------|-------------|------------|
 | PPO      | Proximal Policy Optimization Algorithms | [1707.06347](https://arxiv.org/abs/1707.06347) |
 | DPO      | Direct Preference Optimization: Your Language Model is Secretly a Reward Model | [2305.18290](https://arxiv.org/abs/2305.18290) |
-| GRPO     | Generalized Reinforce Policy Optimization | [2501.12948](https://arxiv.org/abs/2501.12948) |
-| DAPO     | Divergence-Augmented Preference Optimization | [2503.14476](https://arxiv.org/abs/2503.14476) |
-| Dr.GRPO  | Distributionally Robust Generalized Reinforce Policy Optimization | [2503.20783](https://arxiv.org/abs/2503.20783) |
-| StarPO   | Stabilized Reinforcement Alignment via Preference Optimization | [2504.20073](https://arxiv.org/abs/2504.20073) |
-| ProRL    | Proximal Reinforcement Learning with Preference Feedback | [2505.24864](https://arxiv.org/abs/2505.24864) |
-| GSPO     | Generalized Soft Preference Optimization | [2507.18071](https://arxiv.org/abs/2507.18071) |
-
-## Deep Research
-
-| Model        | Paper Title | arXiv Link |
-|--------------|-------------|------------|
-| R1-Searcher  | R1-Searcher: Training Reasoners by Searching with Language Models | [2503.05592](https://arxiv.org/abs/2503.05592) |
-| Search-R1    | Search-R1: Scaling Reinforcement Learning with Tree Search for Reasoning | [2503.09516](https://arxiv.org/abs/2503.09516) |
-| ReSearch     | ReSearch: Reinforcement Learning with Search for Reasoning | [2503.19470](https://arxiv.org/abs/2503.19470) |
-| StepSearch   | StepSearch: Stepwise Search for Long-Horizon Reasoning | [2505.15107](https://arxiv.org/abs/2505.15107) |
-| R1-Searcher++| R1-Searcher++: Scaling Search-Based Reinforcement Learning with Language Models | [2505.17005](https://arxiv.org/abs/2505.17005) |
-| ZeroSearch   | ZeroSearch: Training Zero-Shot Reasoners via Search | [2505.04588](https://arxiv.org/abs/2505.04588) |
-| WebDancer    | WebDancer: Reinforcement Learning with Web-Scale Exploration | [2505.22648](https://arxiv.org/abs/2505.22648) |
-| WebSailor    | WebSailor: Autonomous Web Navigation with Reinforcement Learning | [2507.02592](https://arxiv.org/abs/2507.02592) |
-| ASearcher    | ASearcher: Adaptive Search for Reasoning with Language Models | [2508.07976](https://arxiv.org/pdf/2508.07976) |
-| SSRL         | SSRL: Self-Supervised Reinforcement Learning via Search | [2508.10874](https://arxiv.org/abs/2508.10874) |
+| GRPO     | DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models | [2402.03300](https://arxiv.org/abs/2402.03300) |
+| DAPO     | DAPO: An Open-Source LLM Reinforcement Learning System at Scale | [2503.14476](https://arxiv.org/abs/2503.14476) |
+| Dr.GRPO  | Understanding R1-Zero-Like Training: A Critical Perspective | [2503.20783](https://arxiv.org/abs/2503.20783) |
+| StarPO   | RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn RL | [2504.20073](https://arxiv.org/abs/2504.20073) |
+| ProRL    | ProRL: Prolonged Reinforcement Learning Expands Reasoning Boundaries | [2505.24864](https://arxiv.org/abs/2505.24864) |
+| GSPO     | Group Sequence Policy Optimization | [2507.18071](https://arxiv.org/abs/2507.18071) |
+| OPD      | On-Policy Distillation (Thinking Machines Lab) | [Blog](https://thinkingmachines.ai/blog/on-policy-distillation/) |
+| SDPO     | SDPO: Reinforcement Learning via Self-Distillation | [2601.20802](https://arxiv.org/abs/2601.20802) |
 
 ## Foundation Models
 
@@ -48,6 +35,9 @@
 | Gemma 3       | Gemma 3 Technical Report                                       | [2503.19786](https://arxiv.org/pdf/2503.19786)                                      |
 | Qwen3         | Qwen3 Technical Report                                         | [2505.09388](https://arxiv.org/abs/2505.09388)                                      |
 | LongCat-Flash | LongCat-Flash Technical Report                                 | [2509.01322](https://arxiv.org/abs/2509.01322)                                      |
+| Qwen3-VL      | Qwen3-VL Technical Report                                      | [2511.21631](https://arxiv.org/abs/2511.21631)                                      |
+| DeepSeek-V3.2 | DeepSeek-V3.2: Pushing the Frontier of Open Large Language Models | [2512.02556](https://arxiv.org/abs/2512.02556)                                   |
+| Claude Opus 4.6 | Claude Opus 4.6 System Card                                  | [System Card](https://www.anthropic.com/claude-opus-4-6-system-card)                |
 
 
 
@@ -124,4 +114,21 @@
 | Tau-Bench  | Tau-Bench: A Benchmark for Tool-Augmented Language Models | [Tau-Bench](https://tau-bench.github.io/)                   |
 | Tau2-Bench | Tau2-Bench: Benchmarking General-Purpose Language Agents  | [Tau2-Bench](https://tau-bench.github.io/tau2/)             |
 | MCP-Bench  | MCP-Bench: Benchmarking Tool-Using LLM Agents with Complex Real-World Tasks via MCP Servers     | [2508.20453](https://arxiv.org/pdf/2508.20453v1) |
+| SWE-bench  | SWE-bench: Can Language Models Resolve Real-World GitHub Issues? | [2310.06770](https://arxiv.org/abs/2310.06770) |
+| GAIA       | GAIA: A Benchmark for General AI Assistants               | [2311.12983](https://arxiv.org/abs/2311.12983)              |
+
+## Deep Research
+
+| Model        | Paper Title | arXiv Link |
+|--------------|-------------|------------|
+| R1-Searcher  | R1-Searcher: Training Reasoners by Searching with Language Models | [2503.05592](https://arxiv.org/abs/2503.05592) |
+| Search-R1    | Search-R1: Scaling Reinforcement Learning with Tree Search for Reasoning | [2503.09516](https://arxiv.org/abs/2503.09516) |
+| ReSearch     | ReSearch: Reinforcement Learning with Search for Reasoning | [2503.19470](https://arxiv.org/abs/2503.19470) |
+| StepSearch   | StepSearch: Stepwise Search for Long-Horizon Reasoning | [2505.15107](https://arxiv.org/abs/2505.15107) |
+| R1-Searcher++| R1-Searcher++: Scaling Search-Based Reinforcement Learning with Language Models | [2505.17005](https://arxiv.org/abs/2505.17005) |
+| ZeroSearch   | ZeroSearch: Training Zero-Shot Reasoners via Search | [2505.04588](https://arxiv.org/abs/2505.04588) |
+| WebDancer    | WebDancer: Reinforcement Learning with Web-Scale Exploration | [2505.22648](https://arxiv.org/abs/2505.22648) |
+| WebSailor    | WebSailor: Autonomous Web Navigation with Reinforcement Learning | [2507.02592](https://arxiv.org/abs/2507.02592) |
+| ASearcher    | ASearcher: Adaptive Search for Reasoning with Language Models | [2508.07976](https://arxiv.org/pdf/2508.07976) |
+| SSRL         | SSRL: Self-Supervised Reinforcement Learning via Search | [2508.10874](https://arxiv.org/abs/2508.10874) |
 
