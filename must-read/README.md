@@ -90,6 +90,7 @@
 | Measuring Inductive Biases of In-Context Learning                                | He He            | [Notion](https://www.notion.so/Measuring-Inductive-Biases-of-In-Context-Learning-with-Underspecified-Demonstrations-e4a4f05eec924563a6afc2b4d74405b1?pvs=21)                 |
 | Faith and Fate: Limits of Transformers on Compositionality                       | Yejin Choi       | [Notion](https://www.notion.so/Faith-and-Fate-Limits-of-Transformers-on-Compositionality-12c4d8b6b37540aa87ebeb8140e0f474?pvs=21)                                            |
 | Intrinsic Dimensionality Explains Effectiveness of LM Fine-Tuning                | Luke Zettlemoyer | [Notion](https://www.notion.so/Intrinsic-Dimensionality-Explains-the-Effectiveness-of-Language-Model-Fine-Tuning-9d72262a131d46eb93bf512e34e2232e?pvs=21)                    |
+| The Mosaic Memory of Large Language Models                                        | Nature Comms     | [2405.15523](https://arxiv.org/abs/2405.15523)                                                                                                                              |
 
 ## Reward Models & Benchmarks
 
