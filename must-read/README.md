@@ -63,6 +63,7 @@
 | Emergent Abilities of LLMs                  | Jason Wei | [2206.07682](https://arxiv.org/abs/2206.07682)                  |
 | Grokking: Generalization Beyond Overfitting | OpenAI    | [2201.02177](https://arxiv.org/abs/2201.02177)                  |
 | Tensor Programs (series)                    | Greg Yang | [Tensor Programs](https://thegregyang.com/#tensorprograms)      |
+| Densing Law of LLMs                         | Zhiyuan Liu (THU) | [2412.04315](https://arxiv.org/abs/2412.04315)          |
 
 ## LLM Preference Alignment
 
