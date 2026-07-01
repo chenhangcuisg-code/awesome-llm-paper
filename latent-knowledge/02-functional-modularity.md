@@ -1,0 +1,8 @@
+# 02 — Functional Modularity & Brain Analogues
+
+Do LLMs organize knowledge into **segregated, domain-specific populations** — the way the human brain has functional networks? This sub-category collects work on emergent modularity inside models, and the neuroscience bridge that compares model representations to single-neuron recordings in the human brain.
+
+| # | Title | Venue | Year | Link | Summary |
+|---|---|---|---|---|---|
+| 1 | **Modular Cognitive Architecture Emerges in Large Language Models** | preprint | 2026 | [github: Pengrui-Han/LLM_Modularity](https://github.com/Pengrui-Han/LLM_Modularity) | Shows LLMs spontaneously develop **segregated, domain-specific neuron populations** rather than processing every task with a single undifferentiated network. These specialized clusters are analogous to the functional networks of the human brain, where distinct regions handle distinct cognitive domains — evidence that a modular cognitive architecture *emerges* from ordinary pretraining. |
+| 2 | **Mapping the Neuronal Building Blocks of Human Language with Language Models** | Nature | 2026 | [10.1038/s41586-026-10691-5](https://www.nature.com/articles/s41586-026-10691-5) | Combines wide-scale **single-neuron recordings** in the human brain with language-model representations to reveal neurons encoding fundamental linguistic components — grammatical relationships, parts of speech, and other features. Maps a diverse, lateralized neural architecture across frontal and temporal cortex, using LMs as a model of the linguistic features individual neurons track. A direct bridge between LLM latent structure and human language neuroscience. |

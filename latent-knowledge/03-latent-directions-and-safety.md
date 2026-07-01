@@ -1,0 +1,8 @@
+# 03 — Latent Directions & Safety
+
+Behavior in LLMs is often governed by **linear directions** in the residual stream. This sub-category covers the *refusal direction* (and its automated ablation), and empirical work on **where and when safety decisions are actually made** in the latent computation — before or during the visible chain-of-thought.
+
+| # | Title | Venue | Year | Link | Summary |
+|---|---|---|---|---|---|
+| 1 | **Heretic: Fully Automatic Censorship Removal via Directional Ablation** | open-source tool | 2025 | [github: p-e-w/heretic](https://github.com/p-e-w/heretic) | Automates "abliteration" — identifies the **refusal direction** in the residual stream (following Arditi et al. 2024) and orthogonalizes the weight matrices to suppress it, so the model stops refusing, with no retraining. Pairs directional ablation with a TPE/Optuna parameter optimizer to make the process fully automatic. Reportedly matches expert manual abliterations while achieving much lower KL divergence (≈0.16 vs 0.45–1.04), preserving more capability. A practical demonstration that alignment/refusal is a removable linear feature. |
+| 2 | **Do Thinking Tokens Help with Safety?** | arXiv / OpenReview | 2026 | [arXiv:2606.25013](https://arxiv.org/abs/2606.25013) | Asks whether reasoning models' "thinking tokens" enable genuine safety deliberation or merely rationalize a decision already made. Finds safety behavior is **largely predetermined before the chain-of-thought begins**, remains shallow (like instruction-tuned models), and that longer thinking does **not** improve the ASR/over-refusal tradeoff — thinking tokens act as post-hoc "prefix completion" rather than changing outcomes. Locates the safety decision *early* in the latent computation. |

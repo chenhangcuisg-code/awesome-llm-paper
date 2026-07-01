@@ -6,6 +6,8 @@ A curated collection of LLM papers — split into two complementary tracks:
 |---|---|
 | [`must-read/`](./must-read/README.md) | The classics every LLM researcher should read. **Inherits and extends [AlphaLab-USTC/Must-Read-LLM-Papers](https://github.com/AlphaLab-USTC/Must-Read-LLM-Papers)** — pretraining, scaling laws, alignment, RL, agents, reasoning, multimodal, efficient inference, etc. |
 | [`top-journals/`](./top-journals/README.md) | LLM works that have appeared in top-tier journals — **Nature**, **Science**, **Cell**, **NEJM** (and their sub-journals). Includes title, journal, year, DOI/URL, and an English summary. |
+| [`latent-knowledge/`](./latent-knowledge/README.md) | How knowledge is **encoded, organized, and steered** inside models — mechanistic interpretability, functional modularity / brain analogues, latent behavioral directions (refusal, safety), and representational redundancy. |
+| [`quantization/`](./quantization/README.md) | LLM **quantization & low-bit** literature — PTQ, sub-4-bit / BitNet, FP4/FP8, KV-cache, MoE quantization, QAT, systems/kernels. |
 
 > The `must-read/` folder mirrors the upstream curation; the `top-journals/` folder is original research compiled here, with a focus on LLM-for-science and LLM-for-medicine peer-reviewed at the top venues.
 
@@ -22,11 +24,19 @@ Most "awesome" lists for LLMs are arXiv-heavy. But when LLMs touch science and m
 awesome-llm-paper/
 ├── must-read/                 # Classics (forked + maintained)
 │   └── README.md
-└── top-journals/              # Top-tier journal LLM papers
-    ├── README.md              # Index & methodology
-    ├── nature.md              # Nature + Nature Machine Intelligence + Nature Medicine + ...
-    ├── science.md             # Science + Science Advances + Science Robotics + ...
-    └── cell-nejm.md           # Cell + NEJM + Lancet + JAMA families
+├── top-journals/              # Top-tier journal LLM papers
+│   ├── README.md              # Index & methodology
+│   ├── nature.md              # Nature + Nature Machine Intelligence + Nature Medicine + ...
+│   ├── science.md             # Science + Science Advances + Science Robotics + ...
+│   └── cell-nejm.md           # Cell + NEJM + Lancet + JAMA families
+├── latent-knowledge/          # Internal representations: interpretability & structure
+│   ├── README.md              # Index & scope
+│   ├── 01-interpretable-features.md
+│   ├── 02-functional-modularity.md
+│   ├── 03-latent-directions-and-safety.md
+│   └── 04-representational-redundancy.md
+└── quantization/              # Low-bit / quantization literature
+    └── README.md
 ```
 
 ## Contributing
