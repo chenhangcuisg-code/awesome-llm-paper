@@ -5,14 +5,16 @@
 >
 > 与 [`README.md`](./README.md)（学术向 must-read 全集）的关系：那份是广度目录，这份是**一条可以从头读到尾的主线**。
 
-**四条主线**
+**六条主线**
 
-| 模块 | 主题 | 论文数 | 大概读完时间 |
+| 模块 | 主题 | 条目数 | 大概读完时间 |
 |---|---|---|---|
 | [A](#a-训练全流程入门) | 训练全流程：pretrain → midtrain → post-train (PPO / GRPO / DPO / OPD) | 16 | 2–3 周 |
 | [B](#b-经典技术报告--system-card) | 经典 technical report 与 system card | 14 | 1–2 周 |
 | [C](#c-轻量化部署) | 轻量化部署：算法 + 工程项目 | 17 | 1–2 周 |
 | [D](#d-agent-harness--self-evolving) | Agent harness + self-evolving harness | 16 | 1–2 周 |
+| [E](#e-memory经典--业界在用) | Memory：经典论文 + 业界在用的系统 | 20 | 1 周 |
+| [F](#f-幻觉业界怎么真的解决) | 幻觉：论文 + 业界实际部署的算法与项目 | 24 | 1–2 周 |
 
 **图例**：⭐ = 必读（每模块 3–5 篇，只读这些也能建立骨架） · 📄 = 论文 · 📕 = 技术报告 / system card · 🔧 = 工程项目（代码为主） · 📝 = 博客 / 非论文但影响力大
 
@@ -275,19 +277,199 @@
 
 ---
 
+## E. Memory：经典 + 业界在用
+
+> **先厘清一件事**：业界说的 "memory" 至少有三种完全不同的东西，混着谈会很乱。
+>
+> | 层 | 是什么 | 代表 |
+> |---|---|---|
+> | **① 架构级** | 改模型本身，让权重/状态能记东西 | Titans、Metis |
+> | **② 上下文级** | 不改模型，管理塞进 context window 的东西 | MemGPT、Agentic Context Management |
+> | **③ 检索级** | 外部存储 + 检索召回 | RAG、HippoRAG、Zep |
+>
+> **业界生产系统 99% 在 ②+③**，①是研究前沿。本节按这个分层组织。
+
+### E1. 四篇奠基之作
+
+| | 论文 | 贡献 | 链接 |
+|---|---|---|---|
+| ⭐📄 | **MemGPT: Towards LLMs as Operating Systems**（Packer et al., 2023） | **本节最重要的一篇**。把操作系统的**虚拟内存分页**思想搬到 context window：区分「主上下文」（快，有限）和「外部上下文」（慢，无限），让模型**自己调用函数**在两者间换页。这个抽象定义了后来所有 agent memory 产品的形态。它的开源实现改名为 **Letta**（24k stars），是目前最主流的 stateful agent 框架。 | [2310.08560](https://arxiv.org/abs/2310.08560) · [Letta](https://github.com/letta-ai/letta) |
+| ⭐📄 | **Generative Agents: Interactive Simulacra of Human Behavior**（Park et al., UIST 2023） | 「斯坦福小镇」。提出至今仍是标配的**三件套：memory stream（带时间戳的观察流）+ reflection（周期性把琐碎观察合成为高层洞见）+ retrieval（按 recency × importance × relevance 三因子打分召回）**。这个三因子打分公式今天还在被各种 memory 系统抄。 | [2304.03442](https://arxiv.org/abs/2304.03442) |
+| ⭐📄 | **Cognitive Architectures for Language Agents (CoALA)**（Sumers et al., TMLR 2024） | **概念框架而非系统**，但值得读——它把 agent memory 明确切成 **working / episodic（经历过什么）/ semantic（知道什么事实）/ procedural（会做什么）** 四类。**讨论 memory 时用这套词汇能避免大量鸡同鸭讲**，业界文档普遍采用。 | [2309.02427](https://arxiv.org/abs/2309.02427) |
+| 📄 | **MemoryBank: Enhancing LLMs with Long-Term Memory**（Zhong et al., AAAI 2024） | 引入**艾宾浩斯遗忘曲线**做记忆衰减——不重要且长期未召回的记忆自动淡出。「memory 需要主动遗忘机制，不能只增不减」这个观点从这里开始被普遍接受。 | [2305.10250](https://arxiv.org/abs/2305.10250) |
+
+### E2. 检索式记忆（③层，与 RAG 交叉）
+
+| | 论文 | 贡献 | 链接 |
+|---|---|---|---|
+| ⭐📄 | **HippoRAG: Neurobiologically Inspired Long-Term Memory for LLMs**（Gutiérrez et al., NeurIPS 2024） | **多跳记忆的代表解法**。类比海马体索引理论：LLM 抽知识图谱当「索引」，用 Personalized PageRank 做单步多跳召回。解决普通向量检索「A→B→C 关联串不起来」的硬伤，且比迭代式检索便宜一个数量级。 | [2405.14831](https://arxiv.org/abs/2405.14831) |
+| ⭐📄 | **Zep: A Temporal Knowledge Graph Architecture for Agent Memory**（Rasmussen et al., 2025） | **最贴近生产的一篇**。核心是**时序知识图谱**：每条事实带 valid-from / valid-to 双时间戳，所以「用户去年在 A 公司、今年在 B 公司」不会打架——**它知道事实会过期**。这是纯向量库做不到的，也是企业场景最常踩的坑。对应开源产品 Graphiti。 | [2501.13956](https://arxiv.org/abs/2501.13956) · [Graphiti](https://github.com/getzep/graphiti) |
+| ⭐📄 | **Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory**（Chhikara et al., 2025） | **业界用得最多的开源 memory 层**（41k+ stars）。做法很务实：LLM 从对话中抽取事实 → 与已有记忆比对 → 决定 ADD / UPDATE / DELETE / NOOP。论文报告相比全历史大幅降 token 与延迟。**想快速给产品加 memory，一般从这个起步。** | [2504.19413](https://arxiv.org/abs/2504.19413) · [GitHub](https://github.com/mem0ai/mem0) |
+| 📄 | **RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval**（Sarthi et al., ICLR 2024） | 递归聚类+摘要建成树，检索时可在不同抽象层取材。**长文档记忆**的标准解法之一。 | [2401.18059](https://arxiv.org/abs/2401.18059) |
+| 📄 | **From Local to Global: A Graph RAG Approach**（Edge et al., Microsoft, 2024） | GraphRAG 原始论文。用社区检测 + 分层摘要回答「这批文档整体在讲什么」这类全局问题——**普通 RAG 完全答不了这类**。工程成本高，用前先确认真需要。 | [2404.16130](https://arxiv.org/abs/2404.16130) · [GitHub](https://github.com/microsoft/graphrag) |
+
+### E3. 架构级记忆（①层，研究前沿）
+
+| | 论文 | 贡献 | 链接 |
+|---|---|---|---|
+| ⭐📄 | **Titans: Learning to Memorize at Test Time**（Behrouz et al., Google, 2025） | **这一层最该读的一篇**。神经长期记忆模块在**推理时**继续更新自己的参数，用「惊讶度」（梯度大小）决定什么值得记。把 attention 当短期记忆、这个模块当长期记忆。2M+ 上下文下超过同规模 Transformer。**注意这是研究方向，不是可直接部署的方案。** | [2501.00663](https://arxiv.org/abs/2501.00663) |
+| 📄 | **Metis: Memory Foundation Model**（2026-07） | 更激进：把 memory 做进主干，用**持久化原生记忆状态**、一次前向即更新，不再靠外挂检索。已放出 checkpoint。**「memory 应该是模型能力还是外部系统」这个路线之争的最新一击。** | [2607.26760](https://arxiv.org/abs/2607.26760) |
+
+### E4. 2026 年生产系统与它们的「打脸」基准
+
+> 这一小组特别值得看，因为它呈现了一个**很健康的张力**：厂商系统报 90%+，新基准立刻证明这些数字被高估了。
+
+| | 工作 | 要点 | 链接 |
+|---|---|---|---|
+| 📄 | **Agentic Context Management**（2026-07） | 把 memory 重构成**五个生命周期原语 + 成本模型**，参考实现报 LongMemEval 92% / LoCoMo 93.2%。**目前对②层抽象得最清楚的一篇。** | [2607.21503](https://arxiv.org/abs/2607.21503) |
+| 📄 | **Filesystem-Based Memory for LLM Agents**（2026-07） | 第一次系统研究**「markdown 目录当记忆」这个业界事实标准**（Claude Code / Cursor 的 `.md` 文件就是这套）。结论有点反直觉：**目录组织主要买到的是「搜索经济性」，而不是更好的答案质量。** | [2607.26637](https://arxiv.org/abs/2607.26637) |
+| ⭐📄 | **InMind**（2026-07） | **必读的反面证据**。揭示「隐式关联盲区」：memory 系统在直接提问下能召回事实（84%），但**换成间接提问就掉到 ≤14.4%**。说明它们学会的是文本匹配，不是理解。**看到任何 LongMemEval 90%+ 的宣传，先想起这篇。** | [2607.24368](https://arxiv.org/abs/2607.24368) |
+| 📄 | **RECON**（2026-07） | 专测**事实变更之后**会怎样（这正是 Zep 想解决的问题）。最强的非 Oracle 系统只有 22.4%。**记忆更新是当前最大的未解难题。** | [2607.16716](https://arxiv.org/abs/2607.16716) |
+| 📄 | **MemSecBench**（2026-07） | 安全视角：Write–Execute–Forget 三阶段测试，**恶意记忆在 84.2% 的配置下会被持久化**。给 agent 加 memory = 开了一个持久化的注入面。**上生产前必看。** | [2607.27080](https://arxiv.org/abs/2607.27080) |
+
+### E5. 业界在用的项目
+
+| | 项目 | 定位 · 什么时候选它 | 链接 |
+|---|---|---|---|
+| ⭐🔧 | **Mem0** | **最流行的通用 memory 层**。API 简单（`add` / `search`），托管版和自建版都有。**给现有产品加个人化记忆，默认选它。** | [github.com/mem0ai/mem0](https://github.com/mem0ai/mem0) |
+| ⭐🔧 | **Letta**（原 MemGPT） | **有状态 agent 的完整框架**，不只是 memory 层——自带记忆块编辑、subagent、持久化服务。**要「agent 本身是有状态的」而不是「给无状态 agent 挂个数据库」时选它。** | [github.com/letta-ai/letta](https://github.com/letta-ai/letta) |
+| ⭐🔧 | **Graphiti**（Zep） | **时序知识图谱**。需要处理「事实会变化 / 会过期」（客户状态、项目进展、人员变动）时，这是最合适的。比向量库重，但语义正确。 | [github.com/getzep/graphiti](https://github.com/getzep/graphiti) |
+| 🔧 | **GraphRAG**（Microsoft） | 全局性问题（「整个知识库的主题是什么」）。**索引成本很高**，只在真需要全局摘要时用。 | [github.com/microsoft/graphrag](https://github.com/microsoft/graphrag) |
+| 🔧 | **CLAUDE.md / AGENTS.md 约定** | **最被低估的方案**：纯 markdown 文件放项目里，agent 每次读。零依赖、可 diff、可 code review、人能直接改。上面那篇 Filesystem-Based Memory 论证了它其实相当能打。**先试这个，不够用再上系统。** | [agents.md](https://agents.md/) |
+
+### E 模块要点
+
+1. **先分清是哪一层的问题**（架构 / 上下文 / 检索），三层的解法完全不通用。
+2. **从最简单的开始**：markdown 文件 → Mem0 → Letta / Graphiti。绝大多数场景不需要知识图谱。
+3. **记忆更新比记忆写入难得多**。RECON 证明这块普遍很差；如果业务里事实会变（几乎总会变），优先选带时序语义的方案。
+4. **benchmark 数字要打折**。InMind 表明当前系统擅长的是文本匹配式召回，间接提问就崩。
+5. **memory 是攻击面**（MemSecBench），写入必须有校验，不能让不可信内容直接进长期记忆。
+
+---
+
+## F. 幻觉：业界怎么真的解决
+
+> **先说结论，这是业界共识**：
+> **幻觉不能被「解决」，只能被「约束 + 检测 + 兜底」。** 任何声称消除幻觉的方案都不可信。
+>
+> 生产系统的真实做法是**四道防线叠加**：
+> ```
+> ① 接地（RAG）        —— 让模型有据可依，别靠记忆瞎编
+> ② 约束（结构化/引用） —— 强制可核查的输出形式
+> ③ 检测（验证器）      —— 自动判定这句话有没有依据
+> ④ 兜底（弃答/转人工） —— 没把握时说不知道，而不是编
+> ```
+> 下面按这四层组织。**F1 是理解为什么会幻觉，F2–F5 对应四道防线。**
+
+### F1. 先理解：为什么会幻觉
+
+| | 论文 | 洞见 | 链接 |
+|---|---|---|---|
+| ⭐📄 | **Why Language Models Hallucinate**（Kalai et al., OpenAI, 2025） | **本节最该先读的一篇**。论点很锋利：幻觉不是神秘缺陷，而是**训练和评测机制的必然产物**——预训练下二元分类误差必然导致生成错误；更关键的是，**主流 benchmark 用 0/1 打分，答错和弃答同样得 0 分，于是「蒙一个」在期望上永远优于「说不知道」**。所以模型被我们亲手训练成了自信的应试者。**这直接决定了 F5「弃答」为什么难做。** | [2509.04664](https://arxiv.org/abs/2509.04664) |
+| ⭐📄 | **Language Models (Mostly) Know What They Know**（Kadavath et al., Anthropic, 2022） | 校准的奠基工作：模型的自评概率 P(True) 与实际正确率**有相当的相关性**。**「模型内部其实知道自己没把握」——这是所有基于置信度的检测和弃答机制的前提。** | [2207.05221](https://arxiv.org/abs/2207.05221) |
+| ⭐📄 | **LLMs Know More Than They Show: On the Intrinsic Representation of Hallucinations**（Orgad et al., ICLR 2025） | 更进一步：**真实性信号集中编码在特定 token 的内部表示里**，探针能相当准地预测出错。但有个关键发现——**这种探针不跨数据集泛化**，说明真实性不是单一通用方向。**想用「读内部状态测幻觉」的话，这篇的正反两面都必须知道。** | [2410.02707](https://arxiv.org/abs/2410.02707) |
+| 📄 | **When Not to Trust Language Models**（Mallen et al., ACL 2023） | 实证：**长尾知识上参数记忆很不可靠，热门实体上检索反而可能帮倒忙**。给出「什么时候该检索」的判据。**自适应 RAG 的经验基础。** | [2212.10511](https://arxiv.org/abs/2212.10511) |
+| 📄 | **A Survey on Hallucination in LLMs**（Huang et al., 2023） | 分类体系最清晰的综述：**事实性幻觉 vs 忠实性幻觉**（编造事实 ≠ 违背给定材料）。**这两类的检测和缓解手段完全不同，务必先分清自己要解决哪个。** | [2311.05232](https://arxiv.org/abs/2311.05232) |
+
+### F2. 第一道防线：接地（RAG）
+
+> **RAG 是业界对付幻觉的头号手段**，没有之一。原理简单：不让模型靠参数记忆答，给它材料。
+
+| | 论文 | 贡献 | 链接 |
+|---|---|---|---|
+| ⭐📄 | **Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks**（Lewis et al., NeurIPS 2020） | RAG 原始论文。**读它主要是理解「参数化知识 vs 非参数化知识」这个二分**——这个划分是后面所有工作的地基。 | [2005.11401](https://arxiv.org/abs/2005.11401) |
+| ⭐📄 | **Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection**（Asai et al., ICLR 2024） | **RAG 抗幻觉方向最重要的一篇**。训练模型输出 **reflection token**，自己决定：要不要检索？这段材料相关吗？**我这句话有没有被材料支持？** 把「检索 + 生成 + 自我批评」统一进一个模型。**「让模型自己标注每句话的依据」这个思路是后续引用生成的直接来源。** | [2310.11511](https://arxiv.org/abs/2310.11511) |
+| 📄 | **Chain-of-Note: Enhancing Robustness in Retrieval-Augmented LMs**（Yu et al., 2023） | 针对**检索到噪声/无关文档**的情况：先对每篇文档写阅读笔记再作答，**并且允许判定「材料不足，我不知道」**。直接提升了 RAG 在脏数据下的鲁棒性。 | [2311.09210](https://arxiv.org/abs/2311.09210) |
+| 📄 | **Rowen: Adaptive RAG for Hallucination Mitigation**（Ding et al., 2024） | **不是所有问题都该检索**。用跨语言/跨模型一致性检测判断模型是否在幻觉，只在需要时才触发检索。**省成本且避免「检索帮倒忙」。** | [2402.10612](https://arxiv.org/abs/2402.10612) |
+| 📄 | **RAG for LLMs: A Survey**（Gao et al., 2023） | Naive / Advanced / Modular RAG 三代划分，工程选型时的地图。 | [2312.10997](https://arxiv.org/abs/2312.10997) |
+
+### F3. 第二道防线：约束输出形式
+
+> 让输出**本身就可核查**：带引用、带结构、带溯源。这是产品层面最有效的一招——**即使模型出错，用户也能一眼看出哪句没依据。**
+
+| | 工作 | 要点 | 链接 |
+|---|---|---|---|
+| ⭐📄 | **Chain-of-Verification (CoVe) Reduces Hallucination**（Dhuliawala et al., Meta, 2023） | 四步：起草 → **生成验证问题** → **独立回答这些问题（关键：不看原草稿，避免被自己的错误带偏）** → 据此修订。**不需要外部知识库就能显著降低事实错误**，是最容易接入的一种方法。 | [2309.11495](https://arxiv.org/abs/2309.11495) |
+| ⭐🔧 | **结构化输出 / Constrained decoding** | 用 JSON Schema、正则、语法约束把输出锁进合法空间。**从根上消除「格式类幻觉」**（编造不存在的字段、枚举值）。vLLM / SGLang / OpenAI structured outputs 都原生支持。**便宜、确定性强，能上就上。** | [SGLang](https://github.com/sgl-project/sglang) · [Outlines](https://github.com/dottxt-ai/outlines) |
+| 📄 | **DoLa: Decoding by Contrasting Layers**（Chuang et al., ICLR 2024） | **解码期干预**：对比深层与浅层的 logits 差值来放大事实性信号。**零额外训练、零外部检索、几乎零成本**，直接改解码即可。作为兜底增强很划算。 | [2309.03883](https://arxiv.org/abs/2309.03883) |
+| 📄 | **Retrieval Head Mechanistically Explains Long-Context Factuality**（Wu et al., 2024） | 发现存在专门负责「从上下文里搬运信息」的 **retrieval head**，掐掉它们就开始编。**解释了长上下文下的忠实性来源**，也给了一个可监控的内部信号。 | [2404.15574](https://arxiv.org/abs/2404.15574) |
+
+### F4. 第三道防线：检测与评估
+
+> **这是业界投入最实的一块**——你没法消除幻觉，但你可以在它输出给用户前拦住它。
+
+| | 工作 | 要点 | 链接 |
+|---|---|---|---|
+| ⭐📄 | **SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection**（Manakul et al., EMNLP 2023） | **最实用的黑盒检测法**。核心直觉极简：**同一个问题多采样几次，如果模型真知道，几次回答会互相一致；如果在编，就会互相矛盾。** 不需要 logits、不需要外部知识库、不需要训练——**只要有 API 就能用**。业界落地率非常高。 | [2303.08896](https://arxiv.org/abs/2303.08896) |
+| ⭐📄 | **FActScore: Fine-grained Atomic Evaluation of Factual Precision**（Min et al., EMNLP 2023） | **把长文本拆成原子事实逐条判定**，输出「有多少比例的陈述被支持」而不是笼统的好/坏。**这个粒度是长文事实性评估的事实标准**，后续几乎所有事实性指标都沿用它。 | [2305.14251](https://arxiv.org/abs/2305.14251) |
+| ⭐🔧 | **HHEM (Vectara Hughes Hallucination Evaluation Model)** | **业界部署最广的开源幻觉检测器**。仅 ~0.1B（flan-t5-base 微调），判定「生成内容是否被给定材料支持」，输出 0–1 分。**CPU 上 2k token 约 1.5 秒、内存 <600MB**——便宜到可以对每一条线上输出都跑。RAGTruth-QA 上 74.28% 平衡准确率，超过零样本 GPT-4。同时驱动了知名的 [Hallucination Leaderboard](https://github.com/vectara/hallucination-leaderboard)。**做 RAG 产品的话，这是性价比最高的一道闸。** | [HF](https://huggingface.co/vectara/hallucination_evaluation_model) |
+| ⭐🔧 | **RAGAS** | **RAG 系统评估的事实标准工具**。核心四指标：**faithfulness（答案是否忠于检索到的材料）、answer relevancy、context precision、context recall**。**faithfulness 就是幻觉指标**。无需人工标注，可接入 CI。 | [github.com/explodinggradients/ragas](https://github.com/explodinggradients/ragas) |
+| 📄 | **To Believe or Not to Believe Your LLM**（Abbasi Yadkori et al., DeepMind, 2024） | 用信息论方法**区分认知不确定性（模型真不知道）与偶然不确定性（问题本身有多个合理答案）**。**这个区分在实践中很关键**——后者不该被当成幻觉去「修」。 | [2406.02543](https://arxiv.org/abs/2406.02543) |
+| 📄 | **TruthfulQA**（Lin et al., ACL 2022） | 专测「模型是否复读人类常见误解」。**注意它测的是模仿性谎言，不是 RAG 忠实性**，别拿它评估 RAG 系统。 | [2109.07958](https://arxiv.org/abs/2109.07958) |
+| 📄 | **HaluEval**（Li et al., EMNLP 2023） | 35k 样本的幻觉评测基准，QA / 对话 / 摘要三场景。 | [2305.11747](https://arxiv.org/abs/2305.11747) |
+| 📄 | **Automatically Correcting LLMs: Surveying Self-Correction Strategies**（Pan et al., TACL 2024） | 自我纠错的全景综述，**并且诚实地指出边界：没有外部反馈信号时，自我纠错常常无效甚至变差**。**在设计任何自纠流程前先读这篇，能省很多无用功。** | [2308.03188](https://arxiv.org/abs/2308.03188) |
+
+### F5. 第四道防线：弃答与人工兜底
+
+> 最后一道，也是**最常被忽略**的一道。F1 的 Kalai 那篇已经解释了为什么模型不愿说「不知道」——**因为我们的评测机制在惩罚它。**
+
+实践要点（无单篇论文，是工程共识）：
+
+| 手段 | 做法 | 出处/依据 |
+|---|---|---|
+| **置信度阈值弃答** | 用 SelfCheckGPT 一致性分或 HHEM 分数设阈值，低于阈值走「我不确定」模板 | F4 的检测器 |
+| **强制引用 + 无引用即拒答** | 每个事实陈述必须挂可点击来源，找不到来源的句子直接不输出 | Self-RAG 思路 |
+| **改评测口径** | 内部 eval 把「错答」罚分设得高于「弃答」，否则永远优化不出诚实的模型 | Why LMs Hallucinate |
+| **高风险域强制转人工** | 医疗/法律/金融场景设置不可绕过的人工复核闸门 | 各家 system card 的通行做法 |
+| **护栏框架** | 用 Guardrails / NeMo Guardrails 把上述规则做成可配置的输入输出校验层 | [Guardrails](https://github.com/guardrails-ai/guardrails) · [NeMo Guardrails](https://github.com/NVIDIA/NeMo-Guardrails) |
+
+### F6. 业界项目速查
+
+| | 项目 | 用途 | 链接 |
+|---|---|---|---|
+| ⭐🔧 | **RAGAS** | RAG 全链路评估，faithfulness 指标测幻觉。**先接这个，再谈优化。** | [GitHub](https://github.com/explodinggradients/ragas) |
+| ⭐🔧 | **HHEM-2.1-Open** | 轻量在线幻觉判定器（0.1B，CPU 可跑）。**线上实时拦截用它。** | [HF](https://huggingface.co/vectara/hallucination_evaluation_model) |
+| 🔧 | **Hallucination Leaderboard**（Vectara） | 各家模型在摘要任务上的幻觉率横向榜。**选型时的参考。** | [GitHub](https://github.com/vectara/hallucination-leaderboard) |
+| 🔧 | **Guardrails AI** | 输入输出校验框架（Apache-2.0，7.2k stars），Hub 里有现成 validator 可组合。 | [GitHub](https://github.com/guardrails-ai/guardrails) |
+| 🔧 | **NeMo Guardrails**（NVIDIA） | 用 Colang DSL 定义对话轨道与事实核查流程，企业部署常见。 | [GitHub](https://github.com/NVIDIA/NeMo-Guardrails) |
+| 🔧 | **Outlines / XGrammar** | 约束解码，保证结构合法。**消除格式幻觉最直接的手段。** | [Outlines](https://github.com/dottxt-ai/outlines) · [XGrammar](https://github.com/mlc-ai/xgrammar) |
+| 🔧 | **DeepEval / promptfoo** | LLM 应用的单测与回归框架，把幻觉检查纳入 CI。 | [DeepEval](https://github.com/confident-ai/deepeval) · [promptfoo](https://github.com/promptfoo/promptfoo) |
+
+### F 模块要点
+
+1. **先分清是哪种幻觉**：编造事实（factuality）还是违背给定材料（faithfulness）。**RAG 只能治后者**，前者要靠知识更新和弃答。
+2. **四道防线要叠加，单点都不够**。只做 RAG 不做检测，等于没有闸门。
+3. **检测器要便宜到能全量跑**。HHEM 这类小模型的价值就在这——按每条输出算成本，GPT-4 当判官是跑不起的。
+4. **自我纠错没有外部信号时基本无效**（Pan 那篇综述的结论），别指望「让模型再检查一遍」能解决问题。
+5. **最难的是让模型说「不知道」**，而且这个难点的根源在评测口径上（Kalai 那篇）。**改你自己的 eval 打分方式，比换模型有效。**
+
+---
+
 ## 全局速通路线
 
-**只有一周**，想把四个模块都摸一遍：
+**只有一周**，想把六个模块都摸一遍：
 
-| 天 | 读什么 |
-|---|---|
-| D1 | Chinchilla → FineWeb（规模 + 数据） |
-| D2 | OctoThinker → InstructGPT（midtrain + 后训练全景） |
-| D3 | DeepSeekMath (GRPO) → DPO → TML 的 OPD 博客（四个算法） |
-| D4 | DeepSeek-V3 报告 → Kimi K3 报告（怎么造模型） |
-| D5 | GPTQ → AWQ → vLLM/PagedAttention（怎么部署） |
-| D6 | ReAct → SWE-agent → Building Effective Agents（怎么做 agent） |
-| D7 | Darwin Gödel Machine → Self-Authored Verification（前沿与它的反面） |
+| 天 | 读什么 | 模块 |
+|---|---|---|
+| D1 | Chinchilla → FineWeb（规模 + 数据） | A |
+| D2 | OctoThinker → InstructGPT（midtrain + 后训练全景） | A |
+| D3 | DeepSeekMath (GRPO) → DPO → TML 的 OPD 博客（四个算法） | A |
+| D4 | DeepSeek-V3 报告 → Kimi K3 报告（怎么造模型） | B |
+| D5 | GPTQ → AWQ → vLLM/PagedAttention（怎么部署） | C |
+| D6 | ReAct → SWE-agent → Building Effective Agents（怎么做 agent） | D |
+| D7 | Darwin Gödel Machine → Self-Authored Verification（前沿与它的反面） | D |
+
+**如果你是做应用/产品的**（而不是训模型的），把顺序换成这个更划算：
+
+| 天 | 读什么 | 模块 |
+|---|---|---|
+| D1 | Why LMs Hallucinate → 幻觉综述（先搞清敌人是什么） | F |
+| D2 | RAG 原论文 → Self-RAG → Chain-of-Note（第一道防线） | F |
+| D3 | SelfCheckGPT → FActScore → 上手 RAGAS + HHEM（检测闸门） | F |
+| D4 | MemGPT → Generative Agents → CoALA（memory 三件套 + 词汇表） | E |
+| D5 | Mem0 → Zep → InMind（业界方案 + 它们的局限） | E |
+| D6 | ReAct → SWE-agent 的 ACI 章节 → Building Effective Agents | D |
+| D7 | GPTQ → vLLM/PagedAttention → 部署选型决策树 | C |
 
 ---
 
@@ -315,6 +497,22 @@
 | **Harness** | — | 包在模型外的脚手架代码：工具、循环、上下文、记忆 |
 | **midtrain** | mid-training | 预训练主阶段与 SFT 之间的高质量数据再训练阶段 |
 | **annealing** | — | midtrain 的一种：末期上调高质量数据权重并衰减学习率 |
+| **RAG** | Retrieval-Augmented Generation | 检索外部材料后再生成，抗幻觉第一手段 |
+| **GraphRAG** | — | 用知识图谱/社区摘要组织检索，能答全局性问题 |
+| **episodic / semantic memory** | — | 经历过什么 / 知道什么事实，CoALA 的记忆四分类之二 |
+| **working memory** | — | 当前上下文窗口里正在用的信息 |
+| **procedural memory** | — | 会做什么（技能、流程），常以代码或 SOP 形式存 |
+| **memory stream** | — | 带时间戳的观察流，Generative Agents 提出 |
+| **reflection** | — | 周期性把琐碎观察合成为高层洞见 |
+| **LongMemEval / LoCoMo** | — | 长期记忆能力的主流评测基准 |
+| **factuality hallucination** | 事实性幻觉 | 编造与世界事实不符的内容 |
+| **faithfulness hallucination** | 忠实性幻觉 | 输出违背给定材料，RAG 场景的主要幻觉类型 |
+| **groundedness** | 接地性 | 输出是否有给定材料支撑，faithfulness 的同义表述 |
+| **abstention** | 弃答 | 没把握时拒绝作答而非编造 |
+| **calibration** | 校准 | 模型自评置信度与实际正确率的吻合程度 |
+| **constrained decoding** | 约束解码 | 用 schema/语法限制输出空间，消除格式幻觉 |
+| **HHEM** | Hughes Hallucination Evaluation Model | Vectara 的轻量幻觉检测模型（~0.1B） |
+| **faithfulness score** | — | RAGAS 的核心指标：答案被检索材料支撑的比例 |
 
 ---
 
@@ -322,5 +520,5 @@
 
 - **收录标准**：① 该子方向公认的奠基工作，或 ② 业界实际大规模在用的方法/项目，或 ③ 2026 年最新且方向性明确的工作。宁缺毋滥，每个小节控制在 3–7 条。
 - **链接核实**：所有 arXiv ID、标题、作者均通过 arXiv API 或直接访问页面逐条核对（2026-08-01）。GitHub 项目链接为访问核实的官方仓库。
-- **已知不确定**：Qwen3.5 / Qwen3.6 截至核实时**仅有官方博客、无 arXiv 技术报告**；GLM-5.2 同理（arXiv 上只有 GLM-5）。Thinking Machines 的 OPD 博客页面含 2026-06 的更新插注，与 2025-10 原版可能有出入。
+- **已知不确定**：Qwen3.5 / Qwen3.6 截至核实时**仅有官方博客、无 arXiv 技术报告**；GLM-5.2 同理（arXiv 上只有 GLM-5）。Thinking Machines 的 OPD 博客页面含 2026-06 的更新插注，与 2025-10 原版可能有出入。E4 的 2026-07 memory 论文多为预印本、尚未经同行评议，其报告的 benchmark 分数请对照同组的 InMind / RECON 一起看。F5「弃答与人工兜底」一节是工程共识的归纳，无单篇论文对应，已在表格中标注各条的依据来源。
 - **欢迎 PR**：补充遗漏的经典工作、修正链接、更新新版本报告。

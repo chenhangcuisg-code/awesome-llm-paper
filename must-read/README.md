@@ -1,8 +1,8 @@
 # Must-Read-LLM-Papers
 
 > 🚀 **想快速入门业界 LLM？先读 [`INDUSTRY-QUICKSTART.md`](./INDUSTRY-QUICKSTART.md)** — 一条从头读到尾的主线：
-> **A** 训练全流程（pretrain → midtrain → PPO/GRPO/DPO/OPD） · **B** 经典技术报告与 system card（Kimi K3 / GLM-5 / Qwen / Opus 5 / GPT-5.6） · **C** 轻量化部署（GPTQ + 算法 + 工程项目） · **D** Agent harness 与 self-evolving harness。
-> 本文件是**广度目录**，那份是**带阅读顺序和取舍理由的入门路线**。
+> **A** 训练全流程（pretrain → midtrain → PPO/GRPO/DPO/OPD） · **B** 经典技术报告与 system card（Kimi K3 / GLM-5 / Qwen / Opus 5 / GPT-5.6） · **C** 轻量化部署（GPTQ + 算法 + 工程项目） · **D** Agent harness 与 self-evolving harness · **E** Memory（MemGPT/Mem0/Zep + 2026 打脸基准） · **F** 幻觉（四道防线：RAG → 约束 → 检测 → 弃答）。
+> 本文件是**广度目录**，那份是**带阅读顺序和取舍理由的入门路线**（含研究向 / 应用向两套 7 天速通计划）。
 
 ## Post-Training
 

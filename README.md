@@ -4,7 +4,7 @@ A curated collection of LLM papers — split into two complementary tracks:
 
 | Folder | Scope |
 |---|---|
-| [`must-read/INDUSTRY-QUICKSTART.md`](./must-read/INDUSTRY-QUICKSTART.md) | 🚀 **业界快速入门主线**（中文）— 四个模块、约 60 条精选，带阅读顺序与取舍理由：**A** 训练全流程（pretrain → midtrain → PPO/GRPO/DPO/OPD）· **B** 经典 technical report 与 system card（Kimi K3 / GLM-5 / Qwen / Claude Opus 5 / GPT-5.6）· **C** 轻量化部署（GPTQ/AWQ + 推理系统 + 工程项目选型）· **D** Agent harness 与 self-evolving harness。 |
+| [`must-read/INDUSTRY-QUICKSTART.md`](./must-read/INDUSTRY-QUICKSTART.md) | 🚀 **业界快速入门主线**（中文）— 六个模块、约 105 条精选，带阅读顺序与取舍理由：**A** 训练全流程（pretrain → midtrain → PPO/GRPO/DPO/OPD）· **B** 经典 technical report 与 system card（Kimi K3 / GLM-5 / Qwen / Claude Opus 5 / GPT-5.6）· **C** 轻量化部署（GPTQ/AWQ + 推理系统 + 工程项目选型）· **D** Agent harness 与 self-evolving harness · **E** Memory（MemGPT / Mem0 / Zep / Titans + 2026 打脸基准）· **F** 幻觉治理（RAG → 约束输出 → 检测器 → 弃答四道防线）。附研究向 / 应用向两套 7 天速通计划与 40 条术语表。 |
 | [`must-read/`](./must-read/README.md) | The classics every LLM researcher should read. **Inherits and extends [AlphaLab-USTC/Must-Read-LLM-Papers](https://github.com/AlphaLab-USTC/Must-Read-LLM-Papers)** — pretraining, scaling laws, alignment, RL, agents, reasoning, multimodal, efficient inference, etc. |
 | [`top-journals/`](./top-journals/README.md) | LLM works that have appeared in top-tier journals — **Nature**, **Science**, **Cell**, **NEJM** (and their sub-journals). Includes title, journal, year, DOI/URL, and an English summary. |
 | [`latent-knowledge/`](./latent-knowledge/README.md) | How knowledge is **encoded, organized, and steered** inside models — mechanistic interpretability, functional modularity / brain analogues, latent behavioral directions (refusal, safety), and representational redundancy. |
